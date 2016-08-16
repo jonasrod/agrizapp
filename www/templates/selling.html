@@ -1,0 +1,52 @@
+<ion-view view-title="Vendas">
+    <ion-nav-buttons side="secondary">
+    	<a class="button button-icon button-clear ion-plus" href="#/app/selling-inc/{{safraId}}/{{culturaId}}/9999"></a>
+    </ion-nav-buttons>
+    <ion-content>
+        <ion-list>
+        	<div class="item item-divider text-center">
+        		Comercialização de {{cultura.nome}}
+        	</div>
+        	<div class="row">
+        		<div class="col">Volume Total</div>
+				<div class="col">{{volumeTotal}} {{cultura.conversao}}</div>
+			</div>
+        	<div class="row row-header">
+				<div class="col">Data</div>
+			  	<div class="col text-center">Volume</div>
+			  	<div class="col text-center">Acumulado</div>
+			  	<div class="col text-right">Preço</div>
+			  	<div></div>
+			</div>
+           	<div class="row" ng-repeat="v in vendas">
+				<div class="col">{{v.date | date:'dd/MM/yy'}}</div>
+			  	<div class="col text-center">{{v.volume}}</div>
+			  	<div class="col text-center">{{v.acumulado}}</div>
+			  	<div class="col text-right">R$ {{v.preco}}</div>
+			  	<div>
+			  		<a ui-sref="app.selling-inc({safraId: safraId, culturaId: culturaId, vendaId: v._id})" 
+			  		class="button button-small button-balanced button-block" >
+			  			Editar
+			  		</a>
+			  	</div>
+			</div>
+			<div class="row">
+				<div class="col-75 text-right">Receitas</div>
+				<div class="col text-center">R$ {{receitas}}</div>
+			</div>
+			<div class="row">
+				<div class="col-75 text-right">Média de Preços</div>
+				<div class="col text-center">R$ {{mediaPrecos}}</div>
+			</div>
+			<div class="row">
+				<div class="col-75 text-right">Saldo Disponível</div>
+				<div class="col text-center">{{saldoDisponivel}}</div>
+			</div>
+        </ion-list>
+        <div class="card">
+            <div class="item item-text-wrap">
+                <canvas id="line" class="chart chart-line" chart-data="graph.data" chart-labels="graph.labels" chart-series='graph.series' height="150"></canvas>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

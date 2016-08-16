@@ -1,0 +1,19 @@
+<ion-view view-title="Áreas">
+    <ion-nav-buttons side="secondary">
+    	<a class="button button-icon button-clear ion-plus" ui-sref="app.areas-inc"></a>
+    </ion-nav-buttons>
+    <ion-content>
+        <ion-list>
+            <ion-item class="item-remove-animate item-icon-right" ng-repeat="area in areas" type="item-text-wrap" href="#/app/areas/{{area._id}}">
+            	<div class="row">
+					<div class="col"><h2>{{area.nome}}</h2></div>
+				  	<div class="col" style="text-align: right;">{{area.areaCultivavel}} {{area.medida}}</div>
+				</div>
+                <i claskks="icon ion-chevron-right icon-accessory"></i>
+                <ion-option-button class="button-assertive" ng-click="showConfirm(area)">
+                    Apagar
+                </ion-option-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

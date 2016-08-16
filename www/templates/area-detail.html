@@ -1,0 +1,54 @@
+<ion-view view-title="Detalhes da Área">
+    <ion-content class="padding">
+        <div class="list">
+        	<div class="item item-divider">
+				<b>Dados Principais</b>
+			</div>
+        	<div class="item">
+		      Nome: {{area.nome}}
+		    </div>
+		    <div class="item">
+		      Localição: {{area.localizacao}}
+		    </div>
+		    <div class="item">
+		      Área Cultivável: {{area.areaCultivavel}} {{area.medida}}
+		    </div>
+		    <div class="item">
+		      Tipo: {{area.tipoArea}}
+		    </div>
+		    <div class="item item-divider">
+				<b>Dados Complementares</b>
+			</div>
+		    <div class="item">
+		      Altitude: {{area.altitude}} {{area.medidaAltitude}}
+		    </div>
+		    <div class="item">
+		      PH Médio de Solo: {{area.phMedio.desc}}
+		    </div>
+			<div class="item" ng-repeat="safra in area.safras">
+				<div class="item item-divider">
+					<b>Safra {{safra.projecaoSafra}}</b>
+				</div>
+				<div class="card" ng-repeat="cultura in safra.culturas">
+				    <div class="item item-text-wrap">
+				      {{cultura.nome}}<br />
+				      Área: {{cultura.area}} {{area.medida}}<br />
+				      Rendimento: {{cultura.rendimento}} {{cultura.conversao}}
+				    </div>
+				</div>
+				<div class="card">Total da Safra: {{safra.total}} {{area.medida}}</div>
+		    </div>
+		</div>
+		
+		<div class="button-bar">
+            <a class="button button-assertive button-block " ui-sref="app.areas-inc({areaId: area._id})">Editar</a>
+        </div>
+        
+		<div class="row" ng-repeat="graph in graphs">
+			<div class="col text-center">
+				<span><b>Safra {{graph.safra}}</b></span>
+				<canvas id="bar" class="chart chart-pie" chart-data="graph.data" chart-labels="graph.labels" chart-legend="true" height="100"></canvas>
+			</div>
+		</div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,38 @@
+<ion-view view-title="Colheita">
+    <ion-nav-buttons side="secondary">
+    	
+    </ion-nav-buttons>
+    <ion-content>
+        <form class="list" name="harvestForm" id="harvestForm" novalidate="" ng-submit="save(harvestForm)">
+        	<div class="item item-divider">
+				{{title}}
+			</div>
+        	<label class="item item-input" name="date" ng-class="{'has-errors' : harvestForm.date.$invalid && harvestForm.$submitted, 'no-errors' : harvestForm.date.$valid && harvestForm.$submitted}">
+				<span class="input-label">Data</span>
+			  	<input type="date" name="date" ng-model="colheita.date" required>
+			</label>
+			<div class="error-container" ng-show="harvestForm.date.$error && harvestForm.$submitted" ng-messages="harvestForm.date.$error">
+              <div ng-messages-include="templates/error-list.html"></div>
+            </div>
+            <label class="item item-input" name="colhido" ng-class="{'has-errors' : harvestForm.colhido.$invalid && harvestForm.$submitted, 'no-errors' : harvestForm.colhido.$valid && harvestForm.$submitted}">
+            	<span class="input-label">Colhido</span>
+                <input type="number" min="1" name="colhido" ng-model="colheita.colhido" required>
+            </label>
+            <div class="error-container" ng-show="harvestForm.colhido.$error && harvestForm.$submitted" ng-messages="harvestForm.colhido.$error">
+              <div ng-messages-include="templates/error-list.html"></div>
+            </div>
+            <label class="item item-input" name="produtividade" ng-class="{'has-errors' : harvestForm.produtividade.$invalid && harvestForm.$submitted, 'no-errors' : harvestForm.produtividade.$valid && harvestForm.$submitted}">
+                <span class="input-label">Produtividade</span>
+                <input type="number" name="produtividade" ng-model="colheita.produtividade" required>
+            </label>
+            <div class="error-container" ng-show="harvestForm.produtividade.$error && harvestForm.$submitted" ng-messages="harvestForm.produtividade.$error">
+              <div ng-messages-include="templates/error-list.html"></div>
+            </div>
+            <div class="button-bar">
+                <button class="button button-balanced button-block " type="submit">Salvar</button>
+                <button class="button button-stable button-block " ui-sref="app.harvest({areaId: area._id, safraId: safraId, culturaId: culturaId})">Cancelar</button>
+                <a class="button button-assertive button-block " ng-show="isUpdate" ng-click="showConfirm(colheita)">Excluir</a>
+            </div>
+        </form>
+    </ion-content>
+</ion-view>

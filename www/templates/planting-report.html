@@ -1,0 +1,57 @@
+<ion-view view-title="Relatório">
+    <ion-nav-buttons side="secondary">
+    	
+    </ion-nav-buttons>
+    <ion-content>
+        <form class="list" name="plantingReportForm" id="plantingReportForm" novalidate="" ng-submit="pesquisar(plantingReportForm)">
+        	<div class="item item-divider">
+				Ritimo de Plantio
+			</div>
+            <label class="item item-select" name="produto" ng-class="{'has-errors' : plantingReportForm.produto.$invalid && plantingReportForm.$submitted, 'no-errors' : plantingReportForm.produto.$valid && plantingReportForm.$submitted}">
+                <span class="input-label">Produto</span>
+                <select ng-model="filter.produto" name="produto" ng-options="item._id as item.nome for item in produtoList" required>
+                </select>
+            </label>
+            <div class="error-container" ng-show="plantingReportForm.produto.$error && plantingReportForm.$submitted" ng-messages="plantingReportForm.produto.$error">
+              <div ng-messages-include="templates/error-list.html"></div>
+            </div>
+            <label class="item item-select" name="area" ng-class="{'has-errors' : plantingReportForm.area.$invalid && plantingReportForm.$submitted, 'no-errors' : plantingReportForm.area.$valid && plantingReportForm.$submitted}">
+                <span class="input-label">Áreas</span>
+                <select ng-model="filter.area" name="area" ng-options="item._id as item.nome for item in areas" required>
+                </select>
+            </label>
+            <div class="error-container" ng-show="plantingReportForm.area.$error && plantingReportForm.$submitted" ng-messages="plantingReportForm.area.$error">
+              <div ng-messages-include="templates/error-list.html"></div>
+            </div>
+            <label class="item item-input" name="startDate" ng-class="{'has-errors' : plantingReportForm.startDate.$invalid && plantingReportForm.$submitted, 'no-errors' : plantingReportForm.startDate.$valid && plantingReportForm.$submitted}">
+				<span class="input-label">De</span>
+			  	<input type="date" name="startDate" ng-model="filter.startDate" required>
+			</label>
+			<div class="error-container" ng-show="plantingReportForm.startDate.$error && plantingReportForm.$submitted" ng-messages="plantingReportForm.startDate.$error">
+              <div ng-messages-include="templates/error-list.html"></div>
+            </div>
+            <label class="item item-input" name="endDate" ng-class="{'has-errors' : plantingReportForm.endDate.$invalid && plantingReportForm.$submitted, 'no-errors' : plantingReportForm.endDate.$valid && plantingReportForm.$submitted}">
+				<span class="input-label">Até</span>
+			  	<input type="date" name="endDate" ng-model="filter.endDate" required>
+			</label>
+			<div class="error-container" ng-show="plantingReportForm.endDate.$error && plantingReportForm.$submitted" ng-messages="plantingReportForm.endDate.$error">
+              <div ng-messages-include="templates/error-list.html"></div>
+            </div>
+            <div class="item item-divider">
+				<b>Raio de Abrangência da Pesquisa</b>
+			</div>
+            <label class="item range range-positive">
+              <span class="text-center">{{filter.range}} km</span><br>
+			  <input type="range" name="range" min="0" max="300" value="150" ng-model="filter.range" >
+			</label>
+            <div class="button-bar">
+                <button class="button button-balanced button-block " type="submit">Pesquisar</button>
+            </div>
+            <div class="card" ng-show="showGraph">
+	            <div class="item item-text-wrap">
+	                <canvas id="line" class="chart chart-bar" chart-data="graph.data" chart-labels="graph.labels" series="graph.series" height="150"></canvas>
+	            </div>
+        	</div>
+        </form>
+    </ion-content>
+</ion-view>

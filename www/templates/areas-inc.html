@@ -1,0 +1,183 @@
+<ion-view view-title="Cadastro de Áreas">
+    <ion-nav-buttons side="secondary">
+        
+    </ion-nav-buttons>
+    <ion-content>
+        <form class="list" name="areaForm" id="areaForm" novalidate="" ng-submit="insert(areaForm)">
+        	<div class="item item-divider">
+				<b>Dados Principais</b>
+			</div>
+            <label class="item item-input" name="nomeArea" ng-class="{'has-errors' : areaForm.nome.$invalid && areaForm.$submitted, 'no-errors' : areaForm.nome.$valid && areaForm.$submitted}">
+                <input type="text" placeholder="Nome da Área" name="nome" ng-model="area.nome" required>
+            </label>
+            <div class="error-container" ng-show="areaForm.nome.$error && areaForm.$submitted" ng-messages="areaForm.nome.$error">
+              <div ng-messages-include="templates/error-list.html"></div>
+            </div>
+            <label class="item item-input" name="localizacao" ng-class="{'has-errors' : areaForm.localizacao.$invalid && areaForm.$submitted, 'no-errors' : areaForm.localizacao.$valid && areaForm.$submitted}">
+            	<i class="icon ion-ios-location-outline placeholder-icon"></i>
+                <input type="text" placeholder="Localização" name="localizacao" ng-model="area.localizacao" required>
+            </label>
+            <div class="error-container" ng-show="areaForm.localizacao.$error && areaForm.$submitted" ng-messages="areaForm.localizacao.$error">
+              <div ng-messages-include="templates/error-list.html"></div>
+            </div>
+            <label class="item item-input" name="areaCultivavel" ng-class="{'has-errors' : areaForm.areaCultivavel.$invalid && areaForm.$submitted, 'no-errors' : areaForm.areaCultivavel.$valid && areaForm.$submitted}">
+                <input type="text" placeholder="Área Cultivável" name="areaCultivavel" ng-model="area.areaCultivavel" required>
+            </label>
+            <div class="error-container" ng-show="areaForm.areaCultivavel.$error && areaForm.$submitted" ng-messages="areaForm.areaCultivavel.$error">
+              <div ng-messages-include="templates/error-list.html"></div>
+            </div>
+            <label class="item item-select" name="unidadeArea" ng-class="{'has-errors' : areaForm.medida.$invalid && areaForm.$submitted, 'no-errors' : areaForm.medida.$valid && areaForm.$submitted}">
+            	<span class="input-label"></span>
+                <select name="medida" ng-model="area.medida" required>
+                    <option value="ha" selected="selected">Hectares</option>
+                    <option value="ac">Acres</option>
+                </select>
+            </label>
+            <div class="error-container" ng-show="areaForm.medida.$error && areaForm.$submitted" ng-messages="areaForm.medida.$error">
+              <div ng-messages-include="templates/error-list.html"></div>
+            </div>
+            <label class="item item-select" name="tipoArea" ng-class="{'has-errors' : areaForm.tipoArea.$invalid && areaForm.$submitted, 'no-errors' : areaForm.tipoArea.$valid && areaForm.$submitted}">
+                <span class="input-label">Tipo Área</span>
+                <select name="tipoArea" ng-model="area.tipoArea" required>
+                    <option selected>Própria</option>
+                    <option>Arrendada</option>
+                </select>
+            </label>
+            <div class="error-container" ng-show="areaForm.tipoArea.$error && areaForm.$submitted" ng-messages="areaForm.tipoArea.$error">
+              <div ng-messages-include="templates/error-list.html"></div>
+            </div>
+            <div class="item item-divider">
+				<b>Dados Complementares</b>
+			</div>
+			<label class="item item-input" name="altitudeMedia" ng-class="{'has-errors' : areaForm.altitude.$invalid && areaForm.$submitted, 'no-errors' : areaForm.altitude.$valid && areaForm.$submitted}">
+                <input type="text" placeholder="Altitude Média" name="altitude" ng-model="area.altitude" required>
+            </label>
+            <div class="error-container" ng-show="areaForm.altitude.$error && areaForm.$submitted" ng-messages="areaForm.altitude.$error">
+              <div ng-messages-include="templates/error-list.html"></div>
+            </div>
+            <label class="item item-select" name="unidadeAltitude" ng-class="{'has-errors' : areaForm.medidaAltitude.$invalid && areaForm.$submitted, 'no-errors' : areaForm.medidaAltitude.$valid && areaForm.$submitted}">
+                <span class="input-label"></span>
+                <select name="medidaAltitude" ng-model="area.medidaAltitude" required>
+                    <option value="mts" selected="selected">Metros</option>
+                    <option value="ft">Pés</option>
+                </select>
+            </label>
+            <div class="error-container" ng-show="areaForm.medidaAltitude.$error && areaForm.$submitted" ng-messages="areaForm.medidaAltitude.$error">
+              <div ng-messages-include="templates/error-list.html"></div>
+            </div>
+            <label class="item item-select" name="phMedioSolo" ng-class="{'has-errors' : areaForm.phMedio.$invalid && areaForm.$submitted, 'no-errors' : areaForm.phMedio.$valid && areaForm.$submitted}">
+                <span class="input-label">PH Médio do Solo</span>
+                <select ng-model="area.phMedio" name="phMedio" ng-options="item.valor as item.desc for item in PHList.availableOptions track by item.valor" required>
+                </select>
+            </label>
+            <div class="error-container" ng-show="areaForm.phMedio.$error && areaForm.$submitted" ng-messages="areaForm.phMedio.$error">
+              <div ng-messages-include="templates/error-list.html"></div>
+            </div>
+            <div class="item item-divider">
+				<b>Safras</b>
+			</div>
+            <label class="item item-select" name="projecaoSafra" ng-class="{'has-errors' : projecaoSafraError}">
+                <span class="input-label">Projeção de Safra</span>
+                <select name="projecaoSafra" ng-model="safra.projecaoSafra" ng-options="item.valor as item.desc for item in projecaoSafras" ng-change="safraValida()">
+                </select>
+            </label>
+            <div class="error-container" ng-show="projecaoSafraError" ng-messages="requiredObject">
+              <div ng-messages-include="templates/error-list.html"></div>
+            </div>
+            <label class="item item-select" name="cultura" ng-class="{'has-errors' : culturaError}">
+                <span class="input-label">Cultura</span>
+                <select name="cultura" ng-model="cultura.nome" ng-change="populateConversion()">
+                    <option>Algodão</option>
+                    <option>Aveia</option>
+                    <option>Café Arábica</option>
+                    <option>Café Robusta</option>
+                    <option>Cana de Açúcar</option>
+                    <option>Cevada</option>
+                    <option>Crotalária</option>
+                    <option>Milheto</option>
+                    <option>Milho</option>
+                    <option>Soja</option>
+                    <option>Sorgo</option>
+                    <option>Trigo</option>
+                    <option>Triticale</option>
+                    <option>Triticale</option>
+                </select>
+            </label>
+            <div class="error-container" ng-show="culturaError" ng-messages="requiredObject">
+              <div ng-messages-include="templates/error-list.html"></div>
+            </div>
+            <label class="item item-input" name="areaCultura" ng-class="{'has-errors' : areaCulturaError}">
+                <input type="text" placeholder="Área" name="areaCultura" ng-model="cultura.area">
+            </label>
+            <div class="error-container" ng-show="areaCulturaError" ng-messages="requiredObject">
+              <div ng-messages-include="templates/error-list.html"></div>
+            </div>
+            <label class="item item-input" name="rendimento" ng-class="{'has-errors' : remdimentoError}">
+                <input type="text" placeholder="Rendimento" name="rendimento" ng-model="cultura.rendimento">
+            </label>
+            <div class="error-container" ng-show="remdimentoError" ng-messages="requiredObject">
+              <div ng-messages-include="templates/error-list.html"></div>
+            </div>
+            <label class="item item-input" name="conversao" ng-class="{'has-errors' : areaForm.conversao.$invalid && areaForm.$submitted, 'no-errors' : areaForm.conversao.$valid && areaForm.$submitted}">
+                <input type="text" placeholder="Conversão" name="conversao" ng-model="cultura.conversao" ng-disabled="true">
+            </label>
+            <div class="error-container" ng-show="areaForm.conversao.$error && areaForm.$submitted" ng-messages="areaForm.conversao.$error">
+              <div ng-messages-include="templates/error-list.html"></div>
+            </div>
+            <button class="button button-full button-light" type="button" ng-click="addCultura()">
+			  Adicionar Cultura
+			</button>
+			<div class="list card" ng-hide="hideListCulturas">
+				<ion-list show-delete="true"> 
+					<ion-item class="item-icon-right" ng-repeat="item in culturas" type="item-text-wrap">
+						<a href="#" class="item item-icon-left">
+							{{item.nome}}
+							<ion-delete-button class="ion-minus-circled" ng-click="showConfirm($index)"></ion-delete-button>
+						</a>
+		            </ion-item>
+		        </ion-list>
+			</div>
+            <button class="button button-full button-balanced" type="button" ng-click="addSafra()" ng-disabled="safraDisabled">
+			  Adicionar Safra
+			</button>
+			<div class="list card" ng-hide="hideListSafras" ng-repeat="item in area.safras">
+				<div class="item">
+					<div class="row">
+						<div class="col">
+							<a class="button button-icon icon ion-minus-circled" ng-click="delSafra($index)"></a>
+						</div>
+						<div class="col" ng-click="openModal($index)">Safra {{item.projecaoSafra}}</div>
+						<div class="col" ng-click="openModal($index)">Total {{item.total}} {{area.medida}}</div>
+					</div>
+				</div>
+			</div>
+            <div class="button-bar">
+                <button class="button button-balanced button-block " type="submit">Salvar</button>
+                <button class="button button-stable button-block " ui-sref="app.areas">Cancelar</button>
+            </div>
+        </form>
+    </ion-content>
+</ion-view>
+<script id="culturas-modal.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar>
+      <h1 class="title">Safra {{modalSafra.safra.projecaoSafra}}</h1>
+	  <div class="buttons">
+    	<button class="button" ng-click="closeModal()">Fechar</button>
+  	  </div>
+    </ion-header-bar>
+    <ion-content>
+      <div class="list list-inset" ng-repeat="cultura in modalSafra.culturas">
+			<div class="item item-divider">
+				Cultura: {{cultura.nome}}
+			</div>
+			<div class="item">
+				Área: {{cultura.area}} {{area.medida}}
+			</div>
+			<div class="item">
+				Rendimento: {{cultura.rendimento}} {{cultura.conversao}}
+			</div>
+	  </div>
+    </ion-content>
+  </ion-modal-view>
+</script>

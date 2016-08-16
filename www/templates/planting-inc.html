@@ -1,0 +1,31 @@
+<ion-view view-title="Plantio">
+    <ion-nav-buttons side="secondary">
+    	
+    </ion-nav-buttons>
+    <ion-content>
+        <form class="list" name="plantingForm" id="plantingForm" novalidate="" ng-submit="save(plantingForm)">
+        	<div class="item item-divider">
+				{{title}}
+			</div>
+        	<label class="item item-input" name="date" ng-class="{'has-errors' : plantingForm.date.$invalid && plantingForm.$submitted, 'no-errors' : plantingForm.date.$valid && plantingForm.$submitted}">
+				<span class="input-label">Data</span>
+			  	<input type="date" name="date" ng-model="planting.date" required>
+			</label>
+			<div class="error-container" ng-show="plantingForm.date.$error && plantingForm.$submitted" ng-messages="plantingForm.date.$error">
+              <div ng-messages-include="templates/error-list.html"></div>
+            </div>
+            <label class="item item-input" name="plantado" ng-class="{'has-errors' : plantingForm.plantado.$invalid && plantingForm.$submitted, 'no-errors' : plantingForm.plantado.$valid && plantingForm.$submitted}">
+            	<span class="input-label">Plantado</span>
+                <input type="number" min="1" name="plantado" ng-model="planting.plantado" required>
+            </label>
+            <div class="error-container" ng-show="plantingForm.plantado.$error && plantingForm.$submitted" ng-messages="plantingForm.plantado.$error">
+              <div ng-messages-include="templates/error-list.html"></div>
+            </div>
+            <div class="button-bar">
+                <button class="button button-balanced button-block " type="submit">Salvar</button>
+                <button class="button button-stable button-block " ui-sref="app.planting({areaId: area._id, safraId: safraId, culturaId: culturaId})">Cancelar</button>
+                <a class="button button-assertive button-block " ng-show="isUpdate" ng-click="showConfirm(planting)">Excluir</a>
+            </div>
+        </form>
+    </ion-content>
+</ion-view>

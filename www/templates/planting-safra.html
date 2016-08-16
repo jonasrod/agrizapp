@@ -1,0 +1,15 @@
+<ion-view view-title="Plantio" class="text-center">
+    <ion-nav-buttons side="secondary">
+    	
+    </ion-nav-buttons>
+    <ion-content>
+        <ion-list class="text-center">
+        	<div class="item item-divider">
+		    	Selecione a Safra
+		  	</div>
+            <ion-item ng-repeat="safra in safras" type="item-text-wrap" href="#/app/planting-cultura/{{area._id}}/{{safra._id}}">
+                <h2>{{safra.projecaoSafra}}</h2>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

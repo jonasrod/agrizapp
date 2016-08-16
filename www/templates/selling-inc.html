@@ -1,0 +1,38 @@
+<ion-view view-title="Vendas">
+    <ion-nav-buttons side="secondary">
+    	
+    </ion-nav-buttons>
+    <ion-content>
+        <form class="list" name="sellingForm" id="sellingForm" novalidate="" ng-submit="save(sellingForm)">
+        	<div class="item item-divider">
+				Comercialização de {{cultura.nome}}
+			</div>
+        	<label class="item item-input" name="date" ng-class="{'has-errors' : sellingForm.date.$invalid && sellingForm.$submitted, 'no-errors' : sellingForm.date.$valid && sellingForm.$submitted}">
+				<span class="input-label">Data</span>
+			  	<input type="date" name="date" ng-model="venda.date" required>
+			</label>
+			<div class="error-container" ng-show="sellingForm.date.$error && sellingForm.$submitted" ng-messages="sellingForm.date.$error">
+              <div ng-messages-include="templates/error-list.html"></div>
+            </div>
+            <label class="item item-input" name="volume" ng-class="{'has-errors' : sellingForm.volume.$invalid && sellingForm.$submitted, 'no-errors' : sellingForm.volume.$valid && sellingForm.$submitted}">
+            	<span class="input-label">Volume</span>
+                <input type="number" min="1" name="volume" ng-model="venda.volume" required>
+            </label>
+            <div class="error-container" ng-show="sellingForm.volume.$error && sellingForm.$submitted" ng-messages="sellingForm.volume.$error">
+              <div ng-messages-include="templates/error-list.html"></div>
+            </div>
+            <label class="item item-input" name="preco" ng-class="{'has-errors' : sellingForm.preco.$invalid && sellingForm.$submitted, 'no-errors' : sellingForm.preco.$valid && sellingForm.$submitted}">
+                <span class="input-label">Preço R$</span>
+                <input type="number" min="1" step="0.01" name="preco" ng-model="venda.preco" required>
+            </label>
+            <div class="error-container" ng-show="sellingForm.preco.$error && sellingForm.$submitted" ng-messages="sellingForm.preco.$error">
+              <div ng-messages-include="templates/error-list.html"></div>
+            </div>
+            <div class="button-bar">
+                <button class="button button-balanced button-block " type="submit">Salvar</button>
+                <button class="button button-stable button-block " ui-sref="app.selling({safraId: safraId, culturaId: culturaId})">Cancelar</button>
+                <a class="button button-assertive button-block " ng-show="isUpdate" ng-click="showConfirm(venda)">Excluir</a>
+            </div>
+        </form>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,49 @@
+<ion-view view-title="Colheita">
+    <ion-nav-buttons side="secondary">
+    	<a class="button button-icon button-clear ion-plus" href="#/app/harvest-inc/{{area._id}}/{{safraId}}/{{culturaId}}/9999"></a>
+    </ion-nav-buttons>
+    <ion-content>
+        <ion-list>
+        	<div class="item item-divider text-center">
+        		{{title}}
+        	</div>
+        	<div class="row">
+        		<div class="col">Safra {{safra}}</div>
+				<div class="col">Total a Colher</div>
+			  	<div class="col">{{totalColher}} {{area.medida}}</div>
+			</div>
+        	<div class="row row-header">
+				<div class="col">Data</div>
+			  	<div class="col text-center">Colhido</div>
+			  	<div class="col text-center">Acumulado</div>
+			  	<div class="col text-center">Produtividade</div>
+			  	<div></div>
+			</div>
+           	<div class="row" ng-repeat="c in colheita">
+				<div class="col">{{c.date | date:'dd/MM/yy'}}</div>
+			  	<div class="col text-center">{{c.colhido}}</div>
+			  	<div class="col text-center">{{c.acumulado}}</div>
+			  	<div class="col text-center">{{c.produtividade}}</div>
+			  	<div>
+			  		<a ui-sref="app.harvest-inc({areaId: area._id, safraId: safraId, culturaId: culturaId, harvestId: c._id})" 
+			  		class="button button-small button-balanced button-block" >
+			  			Editar
+			  		</a>
+			  	</div>
+			</div>
+			<div class="row">
+				<div class="col-75 text-right">Total Produzido</div>
+				<div class="col text-center">{{totalProduzido}}</div>
+			</div>
+			<div class="row">
+				<div class="col-75 text-right">Média de Rendimentos</div>
+				<div class="col text-center">{{mediaRendimento}}</div>
+			</div>
+        </ion-list>
+        <div class="card">
+            <div class="item item-text-wrap">
+                <canvas id="line" class="chart chart-line" chart-data="graph.data" chart-labels="graph.labels" chart-series='graph.series' height="150"></canvas>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

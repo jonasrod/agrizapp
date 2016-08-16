@@ -1,0 +1,18 @@
+<ion-view view-title="Vendas" class="text-center">
+    <ion-nav-buttons side="secondary">
+    	
+    </ion-nav-buttons>
+    <ion-content>
+        <ion-list class="text-center">
+        	<div class="item item-divider">
+		    	Selecione o Produto
+		  	</div>
+            <ion-item ng-repeat="cultura in culturas" type="item-text-wrap" href="#/app/selling/{{safraId}}/{{cultura._id}}">
+                <div class="row">
+					<div class="col"><h2>{{cultura.nome}}</h2></div>
+				  	<div class="col" style="text-align: right;">{{cultura.area}}</div>
+				</div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

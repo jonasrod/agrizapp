@@ -1,0 +1,20 @@
+<ion-view title="Clima">
+    <ion-content>
+        <div class="card">
+            <div class="item item-text-wrap">
+                <p><strong>Em construção:</strong></p>
+                </br>
+                <p align="center">Confira a previsão do tempo e os milímetros de chuva na sua região atualizados em tempo real, de acordo com os melhores sites de clima e com os dados consolidados enviados por outros usuários do AgrizApp que atendem aos seus filtros de região ou cultura.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="item item-text-wrap">
+                <map on-create="mapCreated(map)"></map>
+                <a ng-click="centerOnMe()" class="button button-icon icon ion-navigate"></a>
+            </div>
+        </div>
+
+
+    </ion-content>
+</ion-view>

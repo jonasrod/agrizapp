@@ -1,0 +1,69 @@
+<ion-side-menus>
+
+  <ion-side-menu side="left">
+      <ion-header-bar class="bar bar-header bar-dark">
+          <h1 class="title">AgrizApp</h1>
+      </ion-header-bar>
+      <ion-content has-header="true">
+          <ion-list>
+            <ion-item menu-close nav-clear ui-sref="app.tabs.chats" class="item-icon-right">Chat <i class="icon ion-chevron-right icon-accessory"></i></ion-item>
+            <ion-item menu-close nav-clear ui-sref="app.tabs.quotes" class="item-icon-right">Cotações<i class="icon ion-chevron-right icon-accessory"></i></ion-item>
+            <ion-item menu-close nav-clear ui-sref="app.tabs.weather" class="item-icon-right">Clima <i class="icon ion-chevron-right icon-accessory"></i></ion-item>
+
+            <div class="item item-divider">Cadastros</div>
+
+            <ion-item menu-close nav-clear ui-sref="app.planting" class="item-icon-right">Plantio <i class="icon ion-chevron-right icon-accessory"></i></ion-item>
+            <ion-item menu-close nav-clear ui-sref="app.harvesting" class="item-icon-right">Colheita <i class="icon ion-chevron-right icon-accessory"></i></ion-item>
+            <ion-item menu-close nav-clear ui-sref="app.selling" class="item-icon-right">Venda <i class="icon ion-chevron-right icon-accessory"></i></ion-item>
+            <ion-item menu-close nav-clear ui-sref="app.inventory" class="item-icon-right">Estoque <i class="icon ion-chevron-right icon-accessory"></i></ion-item>
+
+            <div class="item item-divider">Informações Gerais</div>
+
+            <ion-item menu-close nav-clear ui-sref="app.profile" class="item-icon-right">Dados do Usuário <i class="icon ion-chevron-right icon-accessory"></i></ion-item>
+            <ion-item menu-close ng-click="login()" class="item-icon-right">Log in</ion-item>
+            <ion-item menu-close nav-clear ui-sref="app.about" class="item-icon-right">Sobre o AgrizApp <i class="icon ion-chevron-right icon-accessory"></i></ion-item>
+
+            <div class="item item-divider">Administrador do AgrizApp</div>
+
+            <ion-item menu-close nav-clear ui-sref="app.admin" class="item-icon-right">Cockpit de Administração</ion-item>
+
+
+        </ion-list>
+    </ion-content>
+  </ion-side-menu>
+
+  <ion-side-menu side="right">
+      <ion-header-bar class="bar bar-header bar-dark">
+          <h1 class="title">Relatórios</h1>
+      </ion-header-bar>
+      <ion-content>
+          <div class="list">
+
+              <div class="item item-divider">Cadastros</div>
+
+              <ion-item menu-close nav-clear ui-sref="app.reports.rptInfo">Áreas</ion-item>
+              <ion-item menu-close nav-clear ui-sref="app.reports.rptInfo">Ritmo de Plantio</ion-item>
+              <ion-item menu-close nav-clear ui-sref="app.reports.rptInfo">Ritmo de Colheita</ion-item>
+              <ion-item menu-close nav-clear ui-sref="app.reports.rptInfo">Ritmo de Venda</ion-item>
+              <ion-item menu-close nav-clear ui-sref="app.reports.rptInfo">Estoque Real e Projetado</ion-item>
+
+          </div>
+      </ion-content>
+  </ion-side-menu>
+
+  <ion-side-menu-content>
+        <ion-nav-bar class="bar-balanced">
+            <ion-nav-buttons side="left">
+                <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+                </button>
+            </ion-nav-buttons>
+            <ion-nav-buttons side="right">
+                <button class="button button-icon button-clear ion-document" menu-toggle="right">
+                </button>
+            </ion-nav-buttons>
+            <ion-nav-back-button class="button-icon ion-arrow-left-c"></ion-nav-back-button>
+        </ion-nav-bar>
+
+        <ion-nav-view name="main-menu-content"></ion-nav-view>
+    </ion-side-menu-content>
+</ion-side-menus>
